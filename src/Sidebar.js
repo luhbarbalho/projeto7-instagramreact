@@ -22,17 +22,24 @@ function Sugestoes (props){
     );
 }
 
+function Sugestao (props){
+    return (
+            <div class={props.classUsuario}>
+                <img src={props.image} alt={props.altinfo}/>
+                <div class={props.classTexto}>
+                <strong>{props.user}</strong>
+                    <div class={props.classRazao}>{props.follow}</div>
+                </div>
+            </div>
+    );
+}
+
 
 export default function Sidebar() {
     return (
         <div class="sidebar">
-            <div class="usuario">
-                <img src={donaflorinda} alt="dona florinda"/>
-                <div class="texto">
-                    <strong>dona.florinda</strong>
-                    Florinda Corcuera y Villalpando
-                </div>
-            </div>
+
+            <Sugestao classUsuario="usuario" image={donaflorinda} altinfo="dona florinda" classTexto="texto" classNome="nome" classRazao="razao" user="dona.florinda" follow="Florinda Corcuera y Villalpando"/>
 
             <div class="sugestoes">
                 
@@ -41,15 +48,31 @@ export default function Sidebar() {
                     <div>Ver tudo</div>
                 </div>
 
-                <Sugestoes classSugestao="sugestao" classUsuario="usuario" image={sans} altinfo="sans project tattoo" classTexto="texto" classNome="nome" classRazao="razao" user="sans_project_tattoo" follow="Segue você" classSeguir="seguir"/>
+                <div class="sugestao">
+                    <Sugestao classUsuario="usuario" image={sans} altinfo="sans project tattoo" classTexto="texto" classNome="nome" classRazao="razao" user="sans_project_tattoo" follow="Segue você"/>
+                        <div class="seguir">Seguir</div>
 
-                <Sugestoes classSugestao="sugestao" classUsuario="usuario" image={okra} altinfo="okra co"classTexto="texto" classNome="nome" classRazao="razao" user="okra_co" follow="Segue você" classSeguir="seguir"/>
+                </div>
 
-                <Sugestoes classSugestao="sugestao" classUsuario="usuario" image={tu} altinfo="tu por ai" classTexto="texto" classNome="nome" classRazao="razao" user="tuporai" follow="Novo no Instagram" classSeguir="seguir"/>
+                <div class="sugestao">
+                    <Sugestao classUsuario="usuario" image={okra} altinfo="okra co"classTexto="texto" classNome="nome" classRazao="razao" user="okra_co" follow="Segue você"/>
+                    <div class="seguir">Seguir</div>
+                </div>
 
-                <Sugestoes classSugestao="sugestao" classUsuario="usuario" image={candles} altinfo="wicked vibes candle co" classTexto="texto" classNome="nome" classRazao="razao" user="wickedvibescandleco" follow="Segue você" classSeguir="seguir"/>
+                <div class="sugestao">
+                    <Sugestao classUsuario="usuario" image={tu} altinfo="tu por ai" classTexto="texto" classNome="nome" classRazao="razao" user="tuporai" follow="Novo no Instagram" />
+                    <div class="seguir">Seguir</div>
+                </div>
+                
+                <div class="sugestao">
+                    <Sugestao classUsuario="usuario" image={candles} altinfo="wicked vibes candle co" classTexto="texto" classNome="nome" classRazao="razao" user="wickedvibescandleco" follow="Segue você"/>
+                    <div class="seguir">Seguir</div>
+                </div>
 
-                <Sugestoes classSugestao="sugestao" classUsuario="usuario" image={art} altinfo="lucie bee illustrates" classTexto="texto" classNome="nome" classRazao="razao" user="lucie.bee.illustrates" follow="Segue você" classSeguir="seguir"/>
+                <div class="sugestao">
+                    <Sugestao classUsuario="usuario" image={art} altinfo="lucie bee illustrates" classTexto="texto" classNome="nome" classRazao="razao" user="lucie.bee.illustrates" follow="Segue você" />
+                    <div class="seguir">Seguir</div>
+                </div>
 
             </div>
 

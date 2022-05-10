@@ -1,3 +1,6 @@
+import Icon from './shared/icon';
+import React from 'react';
+
 // Post1
 import es from './assets/ES.jpeg';
 import egonschiele from './assets/egon-schiele.jpeg';
@@ -19,137 +22,130 @@ import gamingaesthetic from './assets/gaming-aesthetic.jpeg';
 import aesthetic from './assets/aesthetic.jpeg';
 import tintin from './assets/tintin.jpeg';
 
+const items=[            
+    {
+        image: es,
+        altinfo: "egon schiele official",
+        text: "egonschieleofficial",
+        ilustration: egonschiele,
+        altText: "egonschiele",
+        imageLikes: ianah,
+        altlikes: "ianah",
+        likedBy: "_ianah",
+        type: "image"
+    },
+    {
+        image: disenchantmentacc,
+        altinfo: "disenchantment account",
+        text: "Disenchantment",
+        ilustration: disenchantment,
+        altText: "Disenchantment",
+        imageLikes: donaflorinda,
+        altlikes: "dona florinda",
+        likedBy: "dona.florinda",
+        type: "image"
+    },
+    {
+        image: animalsco,
+        altinfo: "animalsco account",
+        text: "animals.co",
+        ilustration: marmotineas,
+        altText: "marmotinhas lindas brincando",
+        imageLikes: jennie,
+        altlikes: "jeenie weenie account",
+        likedBy: "jeenie.weenie",
+        type: "video"
+    },
+    {
+        image: terryquotes,
+        altinfo: "terry quotes account",
+        text: "terryquotes",
+        ilustration: pratchett,
+        altText: "terry pratchett profound quote",
+        type: "image"
+    },
+    {
+        image: gamingaesthetic,
+        altinfo: "gaming aesthetic account",
+        text: "gaming_aesthetic",
+        type: "imagem",
+        ilustration: aesthetic,
+        altText: "pc setup aesthetic",
+        imageLikes: tintin,
+        altlikes: "tintin account",
+        likedBy: "tintin"
+    }
+];
 
-function ConteudoPost (props){
-    return (
-        <div class={props.classUsuario}>
-            <img src={props.image} alt={props.altinfo}/>
-            <p>{props.text}</p>
-        </div>
-    );
-}
 
 function EachPost (props) {
+    const {image, altinfo, text, ilustration, altText, imageLikes, altlikes, likedBy, type } = props;
+
+    // bonus:
+    const [like, setLike] = React.useState();
+    function likePost (event){
+        if(!like && event.detail === 2) {
+            setLike(true);
+        }
+    }
 
     return (
-        <div class={props.class1}>
-            <img src={props.image} alt={props.altinfo}/>
-            <div class={props.classText}>
-                <p>Curtido por <strong>{props.text}</strong> e <strong>outras pessoas</strong></p>
+        <div class="post">
+            <div class="topo">
+                <div class="usuario">
+                    <img src={image} alt={altinfo} />
+                    <p>{text}</p>
+                </div>
+                <div class="acoes">
+                    <Icon icon="ellipsis-horizontal"/>
+                </div>
+            </div>
+
+            <div class="conteudo">
+                {(type !== "imagem")
+                ? <img onClick={likePost} src={ilustration} alt={altText} /> 
+                : <video onClick={likePost} width="614" height="auto" controls autoplay loop muted>
+                <source src={marmotineas} type="video/mp4"/>
+                <source src={marmotineasogg} type="video/ogg"/>
+                </video>
+                }
+            </div>
+
+            <div class="fundo">
+                <div class="acoes">
+                    <div>
+
+                        {/* bonus */}
+                        {like ? 
+                        <ion-icon OnClick={() => setLike(!like)} name="heart-outline"></ion-icon>
+                        : <ion-icon OnClick={() => setLike(like)} name="heart" style={{color: "red"}}></ion-icon>}
+                        
+                        <Icon icon="chatbubble-outline"/>
+                        <Icon icon="paper-plane-outline"/>
+                    </div>
+                    <div>
+                        <Icon icon="bookmark-outline"/>
+                    </div>
+                </div>
+
+                <div class="curtidas">
+                    <img src={imageLikes} alt={altlikes}/>
+                    <div class="texto">
+                        Curtido por <strong>{likedBy}</strong> e <strong>outras pessoas</strong>
+                    </div>
+                </div>
             </div>
         </div>
     );
 }
-
-function Elipsis (props) {
-
-    return (
-        <div class={props.class1}>
-            <ion-icon name={props.nome}></ion-icon>
-        </div>
-    );
-}
-
-function IonIcons() {
-	const icons = ["heart-outline", "chatbubble-outline", "paper-plane-outline"];
-    const componenteicons = icons.map(icon => <ion-icon name={icon}></ion-icon>);
-
-	return (
-        <div class="acoes">
-            <div>
-                {componenteicons}
-            </div>
-            <div>
-                <ion-icon name="bookmark-outline"></ion-icon>
-            </div>
-        </div>
-	);
-}
-
 
 export default function Posts() {
+
+    const componentItem = items.map(item => <EachPost image={item.image} altinfo={item.altinfo} text={item.text} ilustration={item.ilustration} altText={item.altText} imageLikes={item.imageLikes} likedBy={item.likedBy}/>)
+
     return (
         <div class="posts">
-            <div class="post">
-                <div class="topo">
-                    <ConteudoPost classUsuario="usuario" image={es} altinfo="egonschieleofficial" text="egonschieleofficial" />
-                    
-                    <Elipsis class1="acoes" nome="ellipsis-horizontal" />
-                </div>
-
-                <ConteudoPost classUsuario="conteudo" image={egonschiele} altinfo="egonschieleofficial"/>
-
-                <div class="fundo">
-                    <IonIcons />
-
-                    <EachPost class1="curtidas" image={ianah} altinfo="ianah" classText="texto" text="Ianah_" />
-                </div>
-            </div>
-
-            <div class="post">
-                <div class="topo">
-                    <ConteudoPost classUsuario="usuario" image={disenchantmentacc} altinfo="disenchantment account" text="Disenchantment" />
-                    <Elipsis class1="acoes" nome="ellipsis-horizontal" />
-                </div>
-
-                <ConteudoPost classUsuario="conteudo" image={disenchantment} altinfo="disenchantment photo"/>
-
-                <div class="fundo">
-                    <IonIcons />
-                    <EachPost class1="curtidas" image={donaflorinda} altinfo="dona florinda" classText="texto" text="dona.florinda" />
-                </div>
-            </div>
-
-
-            <div class="post">
-                <div class="topo">
-                    <ConteudoPost classUsuario="usuario" image={animalsco} altinfo="animalsco account" text="animals.co" />
-                    <Elipsis class1="acoes" nome="ellipsis-horizontal" />
-                </div>
-
-                <div class="conteudo">
-                    <video width="614" height="auto" controls autoplay loop muted>
-                        <source src={marmotineas} type="video/mp4"/>
-                        <source src={marmotineasogg} type="video/ogg"/>
-                    </video>
-                </div>
-
-                <div class="fundo">
-                    <IonIcons />
-                    <EachPost class1="curtidas" image={jennie} altinfo="jeenie weenie" classText="texto" text="jeenie.weenie" />
-                </div>
-            </div>
-
-            <div class="post">
-                <div class="topo">
-                    <ConteudoPost classUsuario="usuario" image={terryquotes} altinfo="terryquotes account" text="terrypratchettquotes" />
-                    <Elipsis class1="acoes" nome="ellipsis-horizontal" />
-                </div>
-
-                <ConteudoPost classUsuario="conteudo" image={pratchett} altinfo="terry pratchett photo"/>
-
-                <div class="fundo">
-                    < IonIcons />
-                    <EachPost class1="curtidas" image={donaflorinda} altinfo="dona florinda" classText="texto" text="dona.florinda" />
-                </div>
-            </div>
-
-
-            <div class="post">
-                <div class="topo">
-                    <ConteudoPost classUsuario="usuario" image={gamingaesthetic} altinfo="gaming aesthetic account" text="gaming_aesthetic" />
-                    <Elipsis class1="acoes" nome="ellipsis-horizontal" />
-                </div>
-
-                <ConteudoPost classUsuario="conteudo" image={aesthetic} altinfo="aesthetic photo with computer setup"/>
-
-                <div class="fundo">
-                    <IonIcons />
-                    <EachPost class1="curtidas" image={tintin} altinfo="tintin" classText="texto" text="tintin" />
-                </div>
-            </div>
-
-
+            {componentItem}
         </div>
 
     );

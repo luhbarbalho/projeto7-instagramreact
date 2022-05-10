@@ -7,60 +7,73 @@ import nintendo from './assets/nintendo.jpeg';
 import plante1 from './assets/plante1.jpeg';
 import hebe from './assets/hebe.jpeg';
 
-
-
+const items =[
+    {
+        ilustration: totoro,
+        altinfo: "totoro",
+        first: "first",
+        text: "ghibli.museum"
+    },
+    {
+        ilustration: ianah,
+        altinfo: "ianah",
+        text: "_ianah"
+    },
+    {
+        ilustration: tintin,
+        altinfo: "tintin",
+        text: "tintin"
+    },
+    {
+        ilustration: starbucks,
+        altinfo: "starbucks",
+        text: "starbucks"
+    },
+    {
+        ilustration: neilgaiman,
+        altinfo: "neilgaiman",
+        text: "neilgaiman"
+    },
+    {
+        ilustration: nintendo,
+        altinfo: "nintendo",
+        text: "nintendo"
+    },
+    {
+        ilustration: plante1,
+        altinfo: "plante1",
+        text: "plante1"
+    },
+    {
+        ilustration: hebe,
+        altinfo: "hebe",
+        text: "hebe"
+    }
+];
 
 
 
 function EachStory (props) {
     return (
-        <div class={props.classStory}>
-            <div class={props.class2}>
+        <div class="story">
+            <div class="imagem">
                 <img src={props.ilustration} alt={props.altinfo}/>
             </div>
-            <div class={props.classUsuario}>
+            <div class="usuario">
                 <p>{props.text}</p>
             </div>
         </div>
     )
 }
 
-// function IonIcons() {
-// 	const ilustrations = [{totoro}, {ianah}, {tintin},{starbucks}, {neilgaiman}, {nintendo}, {plante1},{hebe}]
-
-//     const cmptilustrations = ilustrations.map(ilustration => src={ilustration});
-//     const alts = ["totoro, "ianah", "tintin", "starbucks", "neilgaiman", "nintendo", "plante1","hebe"]
-
-
-// 	return (
-// 		<img src={cmptilustrations} alt={props.altinfo}/>
-// 	);
-// }
-
-
-
-
 
 
 export default function Storiestop() {
+
+
     return (
         <div class="stories">
-            <EachStory classStory="story" class2="imagem" ilustration={totoro} altinfo="totoro" classUsuario="usuario" first="first" text="ghibli.museum" />
-
-            <EachStory classStory="story" class2="imagem" ilustration={ianah} altinfo="ianah" classUsuario="usuario" text="_ianah" />
-
-            <EachStory classStory="story" class2="imagem" ilustration={tintin} altinfo="tintin" classUsuario="usuario" text="tintin" />
-
-            <EachStory classStory="story" class2="imagem" ilustration={starbucks} altinfo="starbucks" classUsuario="usuario" text="starbucks" />
-
-            <EachStory classStory="story" class2="imagem" ilustration={neilgaiman} altinfo="neilgaiman" classUsuario="usuario" text="neilgaiman" />
-
-            <EachStory classStory="story" class2="imagem" ilustration={nintendo} altinfo="nintendo" classUsuario="usuario" text="nintendo" />
-
-            <EachStory classStory="story" class2="imagem" ilustration={plante1} altinfo="plante1" classUsuario="usuario" text="plante1" />
-            
-            <EachStory classStory="story" class2="imagem" ilustration={hebe} altinfo="hebe" classUsuario="usuario" text="hebe" />
-
+            {items.map(item => <EachStory ilustration={item.ilustration} altinfo={item.altinfo} text={item.text} />)}
         </div>
 
     );

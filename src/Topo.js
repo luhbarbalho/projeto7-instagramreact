@@ -1,15 +1,7 @@
 import instagramname from './assets/instagram-name.png';
 
-function IonIcons() {
-	const icons = ["paper-plane-outline", "compass-outline", "heart-outline", "person-outline"];
-    const componenteicons = icons.map(icon => <ion-icon name={icon}></ion-icon>);
 
-	return (
-		<div class="icones">
-			{componenteicons}
-		</div>
-	);
-}
+const icons = ["paper-plane-outline", "compass-outline", "heart-outline", "person-outline"];
 
 function ConteudoTopo (props){
     return (
@@ -38,7 +30,10 @@ export default function Topo() {
                 <div class="pesquisa">
                     <input type="text" placeholder="Pesquisar" />
                 </div>
-                <IonIcons />
+                
+                <div class="icones">
+                    {icons.map(icon => <ion-icon name={icon}></ion-icon>)}
+                </div>
 
                 <ConteudoTopo class1="icones-mobile" nome="paper-plane-outline" />
             </div>

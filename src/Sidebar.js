@@ -43,11 +43,11 @@ function Usuario (props){
     const {image, altinfo, user, follow} = props;
     
     return (
-        <div class="usuario">
+        <div className="usuario">
             <img src={image} alt={altinfo}/>
-            <div class="texto">
+            <div className="texto">
             <strong>{user}</strong>
-                <div class="razao">{follow}</div>
+                <div className="razao">{follow}</div>
             </div>
         </div>
     );
@@ -58,15 +58,15 @@ function Sugestao (props){
     const {image, altinfo, user, follow} = props;
     
     return (
-        <div class="sugestao">
-            <div class="usuario">
+        <div className="sugestao">
+            <div className="usuario">
                 <img src={image} alt={altinfo}/>
-                <div class="texto">
+                <div className="texto">
                 <strong>{user}</strong>
-                    <div class="razao">{follow}</div>
+                    <div className="razao">{follow}</div>
                 </div>
             </div>
-            <div class="seguir">Seguir</div>
+            <div className="seguir">Seguir</div>
         </div>    
     );
 }
@@ -74,7 +74,7 @@ function Sugestao (props){
 function Textos (props){
     const {classTitulo, textinho, textoOpcional} = props
     return (
-        <div class={classTitulo}>
+        <div className={classTitulo}>
             <p>{textinho}</p>
             <div>{textoOpcional}</div>
         </div>  
@@ -84,14 +84,20 @@ function Textos (props){
 
 export default function Sidebar() {
 
-    const aside = items.map(item => <Sugestao image={item.image} altinfo={item.altinfo} user={item.user} follow={item.follow}/>)
+    const aside = items.map((item, index) => <Sugestao
+    key={index} 
+    image={item.image} 
+    altinfo={item.altinfo} 
+    user={item.user} 
+    follow={item.follow}
+    />)
 
     return (
-        <div class="sidebar">
+        <div className="sidebar">
 
             <Usuario image={donaflorinda} altinfo="dona florinda" classTexto="texto" classNome="nome" classRazao="razao" user="dona.florinda" follow="Florinda Corcuera y Villalpando"/>
 
-            <div class="sugestoes">
+            <div className="sugestoes">
                 <Textos classTitulo="titulo" textinho="Sugestões para você" textoOpcional="Ver tudo"/>
                 {aside}
             </div>

@@ -6,13 +6,14 @@ import neilgaiman from './assets/neil-gaiman.jpeg';
 import nintendo from './assets/nintendo.jpeg';
 import plante1 from './assets/plante1.jpeg';
 import hebe from './assets/hebe.jpeg';
+import backgroundstory from './assets/stories_background.jpg'
 
 const items =[
     {
         ilustration: totoro,
         altinfo: "totoro",
         first: "first",
-        text: "ghibli.museum"
+        text: "ghibli.museum",
     },
     {
         ilustration: ianah,
@@ -51,17 +52,17 @@ const items =[
     }
 ];
 
+function EachStory ({ilustration, altinfo, text, first}) {
 
-
-function EachStory (props) {
     return (
-        <div class="story">
-            <div class="imagem">
-                <img src={props.ilustration} alt={props.altinfo}/>
+        <div className="story">
+            <div className="imagem" style={{backgroundImage: "url(" + backgroundstory + ")"} }>
+                <img src={ilustration} alt={altinfo}/>
             </div>
-            <div class="usuario">
-                <p>{props.text}</p>
+            <div className="usuario">
+                <p>{text}</p>
             </div>
+            
         </div>
     )
 }
@@ -72,9 +73,11 @@ export default function Storiestop() {
 
 
     return (
-        <div class="stories">
-            {items.map(item => <EachStory ilustration={item.ilustration} altinfo={item.altinfo} text={item.text} />)}
+        <div className="stories">
+            {items.map((item, index) => <EachStory key={index} ilustration={item.ilustration} altinfo={item.altinfo} text={item.text} />)}
+            <div class="setinha">
+                <ion-icon name="chevron-forward-circle"></ion-icon>
+            </div>
         </div>
-
     );
 }

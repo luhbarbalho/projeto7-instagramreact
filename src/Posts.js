@@ -13,7 +13,7 @@ import donaflorinda from './assets/dona-florinda.png';
 import animalsco from './assets/animals.co.png';
 import jennie from './assets/jennie.png';
 import marmotineas from './assets/marmots.mp4';
-import marmotineasogg from './assets/marmots.ogg';
+// import marmotineasogg from './assets/marmots.ogg';
 // Post4
 import terryquotes from './assets/terry-quotes.jpeg';
 import pratchett from './assets/pratchett.jpeg';
@@ -27,42 +27,47 @@ const items=[
         image: es,
         altinfo: "egon schiele official",
         text: "egonschieleofficial",
+        type: "imagem",
         ilustration: egonschiele,
         altText: "egonschiele",
         imageLikes: ianah,
         altlikes: "ianah",
         likedBy: "_ianah",
-        type: "image"
+        
     },
     {
         image: disenchantmentacc,
         altinfo: "disenchantment account",
         text: "Disenchantment",
+        type: "imagem",
         ilustration: disenchantment,
         altText: "Disenchantment",
         imageLikes: donaflorinda,
         altlikes: "dona florinda",
         likedBy: "dona.florinda",
-        type: "image"
+        
     },
     {
         image: animalsco,
         altinfo: "animalsco account",
         text: "animals.co",
+        type: "video",
         ilustration: marmotineas,
         altText: "marmotinhas lindas brincando",
         imageLikes: jennie,
         altlikes: "jeenie weenie account",
         likedBy: "jeenie.weenie",
-        type: "video"
     },
     {
         image: terryquotes,
         altinfo: "terry quotes account",
         text: "terryquotes",
+        type: "imagem",
         ilustration: pratchett,
         altText: "terry pratchett profound quote",
-        type: "image"
+        imageLikes: donaflorinda,
+        altlikes: "dona florinda",
+        likedBy: "dona.florinda",
     },
     {
         image: gamingaesthetic,
@@ -73,53 +78,59 @@ const items=[
         altText: "pc setup aesthetic",
         imageLikes: tintin,
         altlikes: "tintin account",
-        likedBy: "tintin"
+        likedBy: "tintin",
     }
 ];
 
 
-function EachPost (props) {
-    const {image, altinfo, text, ilustration, altText, imageLikes, altlikes, likedBy, type } = props;
 
-    // bonus:
-    const [like, setLike] = React.useState();
-    function likePost (event){
-        if(!like && event.detail === 2) {
-            setLike(true);
-        }
+function EachPost ({image, altinfo, text, ilustration, altText, imageLikes, altlikes, likedBy, type}) {
+
+    const [liked, setLiked] = React.useState("");
+    const [icon, setIcon] = React.useState("heart-outline");
+    function isLiked() {
+        !liked ? setLiked("liked") : setLiked("");
+        !liked ? setIcon("heart") : setIcon("heart-outline");
+        
     }
+    function likeIlustration() {
+        setLiked("liked");
+        setIcon("heart");
+    }  
+
 
     return (
-        <div class="post">
-            <div class="topo">
-                <div class="usuario">
+        <div className="post">
+            <div className="topo">
+                <div className="usuario">
                     <img src={image} alt={altinfo} />
                     <p>{text}</p>
                 </div>
-                <div class="acoes">
+                <div className="acoes">
                     <Icon icon="ellipsis-horizontal"/>
                 </div>
             </div>
 
-            <div class="conteudo">
-                {(type !== "imagem")
-                ? <img onClick={likePost} src={ilustration} alt={altText} /> 
-                : <video onClick={likePost} width="614" height="auto" controls autoplay loop muted>
-                <source src={marmotineas} type="video/mp4"/>
-                <source src={marmotineasogg} type="video/ogg"/>
+            <div className="conteudo">
+
+                {
+                type === 'imagem'
+                ? <img
+                onClick={() => likeIlustration()}
+                src={ilustration} 
+                alt={altText} /> 
+                : <video width="614" height="auto" controls>
+                    <source src={ilustration} type="video/mp4"/>
                 </video>
                 }
+
             </div>
 
-            <div class="fundo">
-                <div class="acoes">
+            <div className="fundo">
+                <div className="acoes">
                     <div>
 
-                        {/* bonus */}
-                        {like ? 
-                        <ion-icon OnClick={() => setLike(!like)} name="heart-outline"></ion-icon>
-                        : <ion-icon OnClick={() => setLike(like)} name="heart" style={{color: "red"}}></ion-icon>}
-                        
+                        <ion-icon onClick={() => isLiked()} name={icon}></ion-icon>
                         <Icon icon="chatbubble-outline"/>
                         <Icon icon="paper-plane-outline"/>
                     </div>
@@ -128,9 +139,9 @@ function EachPost (props) {
                     </div>
                 </div>
 
-                <div class="curtidas">
+                <div className="curtidas">
                     <img src={imageLikes} alt={altlikes}/>
-                    <div class="texto">
+                    <div className="texto">
                         Curtido por <strong>{likedBy}</strong> e <strong>outras pessoas</strong>
                     </div>
                 </div>
@@ -141,11 +152,22 @@ function EachPost (props) {
 
 export default function Posts() {
 
-    const componentItem = items.map(item => <EachPost image={item.image} altinfo={item.altinfo} text={item.text} ilustration={item.ilustration} altText={item.altText} imageLikes={item.imageLikes} likedBy={item.likedBy}/>)
 
     return (
-        <div class="posts">
-            {componentItem}
+        <div className="posts">
+
+            {items.map((item, index) => <EachPost
+            key={index}
+            image={item.image} 
+            altinfo={item.altinfo} 
+            text={item.text} 
+            ilustration={item.ilustration} 
+            altText={item.altText} 
+            imageLikes={item.imageLikes} 
+            likedBy={item.likedBy} 
+            type={item.type}
+            />)}
+
         </div>
 
     );

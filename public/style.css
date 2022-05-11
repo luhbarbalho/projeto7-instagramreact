@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 
+
 * {
   box-sizing: border-box;
 }
@@ -124,18 +125,16 @@ body {
   justify-content: center;
   align-items: center;
   height: 66px;
-  width: 68px;
-  background-image: url('../src/assets/stories_background.jpg');
-}
-
-.story .first {
-  margin-left: 60px;
+  width: 66px;
+  background-size: cover;
+  border-radius: 50%;
 }
 
 .story .imagem img {
   width: 56px;
   height: 56px;
   border-radius: 50%;
+
 }
 
 .story .usuario {
@@ -163,6 +162,10 @@ body {
   display: flex;
   flex-direction: column;
   margin-top: 18px;
+}
+
+ion-icon[name="heart"] {
+  color: rgb(226, 59, 47);
 }
 
 .post .topo {
@@ -196,6 +199,10 @@ body {
 
 .post .conteudo img {
   width: 100%;
+}
+
+.post .conteudo img:hover {
+  cursor: pointer;
 }
 
 .post .fundo .acoes {

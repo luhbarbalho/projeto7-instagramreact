@@ -2,14 +2,15 @@ import Topo from './Topo';
 import Storiestop from './Storiestop.js';
 import Posts from './Posts.js';
 import Sidebar from './Sidebar.js';
+import React from 'react';
 
 
 export default function App() {
     return (
-        <div>
+        <React.Fragment>
 			<Topo />
-            <div class="corpo">
-                <div class="esquerda">
+            <div className="corpo">
+                <div className="esquerda">
                     <Storiestop />
                     <Posts />
                 </div>
@@ -17,6 +18,6 @@ export default function App() {
                     <Sidebar />
                 </div> 
             </div>
-        </div>
+        </React.Fragment>
     );
 }
